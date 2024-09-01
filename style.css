@@ -1,0 +1,38 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /* background: linear-gradient(to bottom, #759ef0 10%, #0b115d 90%); */
+    background-color: #023aaa;
+    background-attachment: fixed; 
+} 
+
+body {
+
+    background-attachment: scroll; 
+}
+
+
+/* .banner-section {
+    min-height: 100vh;
+    background-color: #0b115d;
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+} */
+
+.banner-section {
+    min-height: 100vh;
+    background-color: #759ef0; /* Color inicial */
+    background-image: url('banner.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    transition: background-color 0.5s; /* Suaviza la transición de color */
+}
+
+.info-section {
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
