@@ -377,35 +377,49 @@ h1, h2, h3, h4, h5, h6 {
 
 .scroll-down {
   position: absolute;
-  bottom: 2rem;
+  bottom: 2.5rem;
   left: 50%;
   transform: translateX(-50%);
-  width: 32px;
-  height: 52px;
-  border: 2px solid var(--border-strong);
-  border-radius: 20px;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
   display: flex;
+  align-items: center;
   justify-content: center;
   z-index: 2;
-  transition: border-color var(--transition);
+  background: var(--surface);
+  transition: all var(--transition);
+  box-shadow: var(--shadow);
 }
 
 .scroll-down:hover {
   border-color: var(--cyan);
+  background: var(--surface-light);
+  box-shadow: 0 0 24px var(--cyan-glow);
 }
 
 .scroll-down span {
-  width: 6px;
+  width: 12px;
   height: 12px;
-  background: var(--text);
-  border-radius: 3px;
-  margin-top: 8px;
-  animation: scrollBounce 2s infinite;
+  position: relative;
+  background: transparent;
+  animation: scrollBounce 2s infinite ease-in-out;
+}
+
+.scroll-down span::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-right: 2px solid var(--text);
+  border-bottom: 2px solid var(--text);
+  border-radius: 2px;
+  transform: rotate(45deg);
 }
 
 @keyframes scrollBounce {
   0%, 100% { transform: translateY(0); opacity: 1; }
-  50% { transform: translateY(12px); opacity: 0.4; }
+  50% { transform: translateY(8px); opacity: 0.5; }
 }
 
 /* Buttons */
@@ -444,6 +458,19 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-secondary:hover {
   background: var(--surface-light);
+  border-color: var(--cyan);
+  color: var(--cyan);
+  transform: translateY(-2px);
+}
+
+.btn-tertiary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--accent);
+}
+
+.btn-tertiary:hover {
+  background: rgba(59, 130, 246, 0.1);
   border-color: var(--cyan);
   color: var(--cyan);
   transform: translateY(-2px);
@@ -912,6 +939,36 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--cyan);
 }
 
+.contact-wrapper-single {
+  display: block;
+  text-align: center;
+}
+
+.contact-info-full {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.contact-info-full p {
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-list-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem 2rem;
+  justify-items: center;
+  margin-top: 2rem;
+}
+
+.contact-list-grid li {
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 320px;
+}
+
 .contact-form {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -963,6 +1020,55 @@ textarea.form-control {
   font-size: 0.75rem;
   margin-top: 1rem;
   text-align: center;
+}
+
+/* TunLabs */
+.tunlabs-link {
+  display: inline-block;
+  margin: 0.5rem 0 1rem;
+  transition: transform var(--transition), filter var(--transition);
+}
+
+.tunlabs-link:hover {
+  transform: scale(1.03);
+  filter: drop-shadow(0 0 12px var(--cyan-glow));
+}
+
+.tunlabs-logo {
+  width: 220px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.footer-tunlabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  transition: color var(--transition);
+}
+
+.footer-tunlabs:hover {
+  color: var(--cyan);
+}
+
+.footer-tunlabs img {
+  width: 120px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .tunlabs-logo {
+    width: 180px;
+  }
+
+  .footer-tunlabs img {
+    width: 100px;
+  }
 }
 
 /* Footer */
@@ -1137,6 +1243,11 @@ textarea.form-control {
 
   .contact-wrapper {
     gap: 2.5rem;
+  }
+
+  .contact-list-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
   }
 
   .footer-content {

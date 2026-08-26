@@ -157,52 +157,6 @@
     });
   });
 
-  // Contact form handling
-  window.handleSubmit = function (event) {
-    event.preventDefault();
-
-    const form = event.target;
-    const action = form.getAttribute('action');
-
-    // If no Formspree endpoint configured, show toast with copy instructions
-    if (action.includes('YOUR_FORM_ID')) {
-      showToast('The form is not yet configured. Add your Formspree endpoint to the form action.');
-      return false;
-    }
-
-    const formData = new FormData(form);
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending...';
-
-    fetch(action, {
-      method: 'POST',
-      body: formData,
-      headers: {
-        Accept: 'application/json',
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          showToast('Message sent successfully. I will get back to you soon.');
-          form.reset();
-        } else {
-          showToast('Oops! Something went wrong. Please try again.');
-        }
-      })
-      .catch(() => {
-        showToast('Oops! Something went wrong. Please try again.');
-      })
-      .finally(() => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-      });
-
-    return false;
-  };
-
   // Toast notification
   function showToast(message) {
     let toast = document.querySelector('.toast');
